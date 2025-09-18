@@ -30,15 +30,15 @@
             
             // 音乐列表（可以替换为您自己的音乐文件）
             const musicList = [
-                'music/0558_030c_545a_228b276b704ffdf2992ac0b49fb52bd3.m4a',
-                'music/Distractions.m4a',
-                'music/Kauan.m4a',
-                'music/Sometimes.mp3',
-                'music/Sudade.m4a',
-                'music/The wind, The Sea.m4a',
-                'music/This Place Is a Shelter.m4a',
-                'music/克莱因之心.m4a',
-                'music/燃.mp3',
+                'JUN2/0558_030c_545a_228b276b704ffdf2992ac0b49fb52bd3.m4a',
+                'JUN2/Distractions.m4a',
+                'JUN2/Kauan.m4a',
+                'JUN2/Sometimes.mp3',
+                'JUN2/Sudade.m4a',
+                'JUN2/The wind, The Sea.m4a',
+                'JUN2/This Place Is a Shelter.m4a',
+                'JUN2/克莱因之心.m4a',
+                'JUN2/燃.mp3',
             ];
             
             let currentMusicIndex = 0;
@@ -125,4 +125,5 @@
                     bgMusic.volume = volumeSlider.value;
                 }
             });
+
         });
