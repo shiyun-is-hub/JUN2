@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>军势浩荡围棋 - 完整规则</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 跳过导航链接 -->
+    <a href="#main-content" class="skip-link">跳过导航</a>
+    
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">军势<span>浩荡围棋</span></div>
+                <button class="menu-toggle" aria-label="导航菜单">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html#about">游戏介绍</a></li>
+                    <li><a href="index.html#features">核心机制</a></li>
+                    <li><a href="index.html#rules">规则概要</a></li>
+                    <li><a href="index.html#resources">资源下载</a></li>
+                    <li><a href="GUI.html" class="active">完整规则</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>军势浩荡围棋规则</h1>
+            <p>深入了解三方博弈的战略杰作的所有规则与机制</p>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main id="main-content">
+        <div class="container">
+            <div class="rules-container">
+                <h2>军势浩荡（基础规则）</h2>
+                
+                <div class="rule-section">
+                    <h3>A、基础设定</h3>
+                    
+                    <div class="rule-item">
+                        <h4>一、基础设定</h4>
+                        <p><strong>1. 游戏名称：</strong>军势浩荡围棋</p>
+                        <p><strong>2. 玩家数量：</strong>三个玩家（三方势力）</p>
+                        <p><strong>3. 棋盘规格：</strong>23x23，称为"战场"</p>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <h4>二、核心机制</h4>
+                        
+                        <div class="rule-subitem">
+                            <p><strong>1. 浩荡机制：</strong>被提掉的棋子，在一般情况下，回到被提者手中</p>
+                            
+                            <p><strong>2. 军队机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>2.1</strong> 军队即棋子，三方势力初始各拥有40军</p>
+                                <p><strong>2.2</strong> 每个势力拥有一个自己的"座"（通常为角星），最终空出的角为中立角</p>
+                                <p><strong>2.3</strong> 军队推进：每一方的军队在战场部署的军队不得超过20军；你的回合，部署前检查：若你方在战场上已部署的军队数（不含堡垒）已达到20，则你必须先从战场上选择一个已方普通棋子收回，然后才能执行部署指令。</p>
+                            </div>
+                            
+                            <p><strong>3. 战线机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>3.1</strong> 首个棋子需在己方"座"的五格半径内（称为"势力范围"）放置</p>
+                                <div class="rule-subitem">
+                                    <p><strong>3.1.2</strong> 每个棋子都可在已方势力范围内无限制部署</p>
+                                </div>
+                                <p><strong>3.2</strong> 后续每个处于势力范围以外的棋子，只能在已存在棋子的两格半径内（称为"战线推进范围"）放置</p>
+                                <div class="rule-subitem">
+                                    <p><strong>3.2.1</strong> 军队行进采用皇后距离：即取横坐标差与纵坐标差的最大值。</p>
+                                </div>
+                            </div>
+                            
+                            <p><strong>4. 堡垒机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>4.1</strong> 堡垒只能在非"座"范围外部署，为一个棋子贴上特制标签即视为"堡垒"</p>
+                                <p><strong>4.2</strong> 堡垒拥有横、纵、斜相邻的八个交叉点作为"气点"</p>
+                                <p><strong>4.3</strong> 堡垒不与任何棋子共享气</p>
+                                <p><strong>4.4</strong> 部署堡垒时，堡垒所预放置点处，需至少需要三个气点</p>
+                                <p><strong>4.5</strong> 非称帝方最多可放置4个堡垒；称帝方无此限制</p>
+                                <p><strong>4.6</strong> 当堡垒的八个"气点"全部被对方棋子占据时，该堡垒即被摧毁。其对应棋子与堡垒标签均被移出游戏，无法回收。</p>
+                                <p><strong>4.7</strong> 当一方通过放置棋子，使得其某个己方堡垒的任意四个气点全部被己方棋子占据时，则立即将该堡垒、其标签以及占据此四个气点的己方棋子一并收回。</p>
+                                <p><strong>4.8</strong> 摧毁堡垒需要使堡垒的所有八个"气点"都被对方棋子占据。</p>
+                            </div>
+                            
+                            <p><strong>5. "座"机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>5.1</strong> "座"即角星，每个势力仅拥有一个"座"</p>
+                                <p><strong>5.2</strong> 一方"称帝"后，其"座"更改为汉宫，原"座"降为普通角星</p>
+                                <p><strong>5.3</strong> 场上若只剩一方"座"，则该方胜利；任何一方失去"座"即失败</p>
+                            </div>
+                            
+                            <p><strong>6. 中立角机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>6.1</strong> 中立角不可放置棋子</p>
+                                <p><strong>6.3</strong> 中立角仅称帝者可进入</p>
+                            </div>
+                            
+                            <p><strong>7. 汉宫机制</strong></p>
+                            <div class="rule-subitem">
+                                <p><strong>7.1</strong> 汉宫未被占领时：汉宫横、纵一格内，最多只能有一方的棋子（不包含占领汉宫的那一军）</p>
+                                <p><strong>7.2</strong> 汉宫被任意一方占领后：</p>
+                                <div class="rule-subitem">
+                                    <p><strong>7.2.1</strong> 一方将一个棋子放置于汉宫交叉点，且该棋子在任何时候都拥有至少一口气时，即视为该方占领汉宫。</p>
+                                    <p><strong>7.2.2</strong> 当一方占领汉宫时，在其接下来的一个回合，它可以选择跳过正常的放置操作，改为执行'称帝'：将其一个棋子放入一个中立角，并将其"座"升级为"汉宫"，原"座"降为普通角星。</p>
+                                    <p><strong>7.2.3</strong> 占领方的势力范围扩大为七格半径</p>
+                                    <p><strong>7.2.4</strong> 占领方额外获得三个堡垒标签，可额外放置堡垒</p>
+                                    <p><strong>7.2.5</strong> 汉宫被占领后，讨逆军方在汉宫七格势力范围内的战线推进范围扩大为三格半径。帝王方在其以汉宫为中心的七格半径势力范围内，不受战线推进机制限制，可以在该范围内的任何空点落子。</p>
+                                    <p><strong>7.2.6</strong> 汉宫五格势力范围内触发"死亡机制"，直至一方胜出</p>
+                                </div>
+                            </div>
+                            
+                            <p><strong>8. 死亡机制：</strong>当一步提子操作发生时，如果被提的棋子中，有任何一子的最后一口气位于任何一方'座'的五格半径内，则所有被提的棋子均无法回到所有者手中，而是被移出游戏。</p>
+                            <div class="rule-subitem">
+                                <p><strong>8.1</strong> 当一个'座'升级为汉宫后，其原位置不再触发死亡机制，仅汉宫位置触发。</p>
+                                <p><strong>8.2</strong> 死亡机制仅在游戏初始的三个"座"，以及后续触发"称帝"的，汉宫的势力范围内生效。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <h4>三、胜负判定</h4>
+                        <p><strong>1. 常规胜负：</strong>一方失去"座"即失败，失败方棋子移出战场，其余两方军队各增加20个；场上只剩一方"座"时，该方胜利</p>
+                        <p><strong>2. 回合限制议和：</strong>若超过150回合未产生最终赢家，则三方议和（已阵亡方也包含在内）</p>
+                        <p><strong>3. 特殊判定（称帝相关）：</strong>一方称帝后，若其他方未在100回合内推翻称帝方（占领汉宫），则称帝方胜利；反之，讨逆军方双方皆获得胜利</p>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <h4>四、阵营与互动规则</h4>
+                        
+                        <p><strong>1. 联盟机制</strong></p>
+                        <div class="rule-subitem">
+                            <p><strong>1.1</strong> 联盟仅支持双方结盟，决定结盟的两方需各停一手</p>
+                            <p><strong>1.2</strong> 联盟意味着双方承诺：A. 不放置棋子以剥夺对方棋子的气；B. 不包围对方的座或堡垒。</p>
+                            <p><strong>1.3</strong> 若一方违反上述任一承诺，则联盟立即解散。违约发生后，双方棋子不再共享气，且违约方需立即从其战场上收回10个子（由违约方选择）作为惩罚。</p>
+                            <p><strong>1.4</strong> 讨逆军方特殊规定：讨逆军阵营内双方：</p>
+                            <div class="rule-subitem">
+                                <p>1、无法占领同阵营的"座"</p>
+                                <p>2、无法剥夺对方棋子的气</p>
+                                <p>3、无法解除联盟</p>
+                                <p>4、双方共享气点</p>
+                                <p>5、其中一方"座"沦陷，则另一方立即沦陷</p>
+                                <p>6、双方可自由出入对方的势力范围而不触发死亡机制</p>
+                                <p>7、双方堡垒标签不可共享</p>
+                                <p>8、此阵营内，双方皆视同阵营方为已方</p>
+                            </div>
+                        </div>
+                        
+                        <p><strong>2. 讨逆军机制</strong></p>
+                        <div class="rule-subitem">
+                            <p><strong>2.1</strong> 一方称帝后，其余两方立即结盟为"讨逆军"，该联盟不可毁约</p>
+                            <p><strong>2.2</strong> 讨逆军可选择两种身份：</p>
+                            <div class="rule-subitem">
+                                <p><strong>2.2.1</strong> "枭雄"：每回合放下一棋后，可在该棋子的一格战线推进范围内再放第二颗棋</p>
+                                <p><strong>2.2.2</strong> "起义军"：额外获得两个堡垒标签</p>
+                            </div>
+                            <p><strong>2.3</strong> 讨逆军任意一方失去"座"，则整个讨逆军联盟失败</p>
+                            <p><strong>2.4</strong> 讨逆军占领汉宫后，讨逆军阵营全体胜利</p>
+                        </div>
+                        
+                        <p><strong>3. 帝王机制</strong></p>
+                        <div class="rule-subitem">
+                            <p><strong>3.1</strong> 帝王方在战场可部署的军队数量修改为40军</p>
+                            <p><strong>3.2</strong> 帝王方可同时放置的堡垒数量修改为7个</p>
+                            <p><strong>3.3</strong> 帝王军在汉宫势力范围内活动，不受战线推进范围限制</p>
+                            <p><strong>3.4</strong> 若讨逆军100回合内未占领汉宫，则帝王方胜利</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rule-section">
+                    <h3>B、军事浩荡围棋（先后手规则）</h3>
+                    
+                    <div class="rule-item">
+                        <p><strong>1 争先</strong></p>
+                        <div class="rule-subitem">
+                            <p><strong>1.1</strong> 三方玩家通过如投骰、猜拳等随机行为，随机决定首动玩家。</p>
+                            <p><strong>1.2</strong> 首动玩家之后，由首动玩家决定后续行动玩家。</p>
+                        </div>
+                        <p><strong>2</strong> 最后行动玩家，在游戏前两回合，其"战线推进范围"临时增加1格（变为3格皇后距离）。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container footer-content">
+            <p>© 2023 军势浩荡围棋 - 所有权利保留</p>
+            <ul class="footer-links">
+                <li><a href="/forum">规则论坛</a></li>
+                <li><a href="/battlereports">战报分享</a></li>
+                <li><a href="/contact">联系我们</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // 移动导航菜单功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            // 点击导航链接后关闭菜单（移动端）
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
