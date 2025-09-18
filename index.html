@@ -6,8 +6,218 @@
     <title>军势浩荡围棋 - 三方博弈的战略杰作</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+
+          <style>
+        /* 音乐播放器样式 - 内联添加 */
+        .music-player {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border: 1px solid #333;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+        
+        .music-player.expanded {
+            width: 200px;
+            height: auto;
+            min-height: 50px;
+            padding: 10px;
+        }
+        
+        .music-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #8b0000, #d4af37);
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .music-player:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+        }
+        
+        .music-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .music-icon::before {
+            content: '♪';
+            font-size: 20px;
+            color: #d4af37;
+        }
+        
+        .music-controls {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-player.expanded .music-controls {
+            display: flex;
+        }
+        
+        .music-player.expanded .music-icon {
+            display: none;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .control-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .volume-control {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .volume-icon {
+            color: #d4af37;
+            font-size: 14px;
+        }
+        
+        .volume-slider {
+    flex: 1;
+    -webkit-appearance: none; /* 去除默认样式，针对Webkit浏览器 */
+    -moz-appearance: none;    /* 去除默认样式，针对Firefox浏览器 */
+    appearance: none;         /* 标准属性，去除默认样式 */
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+    }
+
+        .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d4af37;
+    cursor: pointer;
+    }
+
+        .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d4af37;
+    cursor: pointer;
+    border: none; /* 在Firefox中，需要去掉默认的边框 */
+    }
+        
+        .music-player.playing .music-icon::before {
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .music-player {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .music-player.expanded {
+                width: 180px;
+            }
+            
+            .music-icon {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .music-icon::before {
+                font-size: 16px;
+            }
+            
+            .control-btn {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
 </head>
 <body>
+
+          <div class="music-player" id="musicPlayer" aria-label="背景音乐播放控制">
+        <div class="music-icon"></div>
+        <div class="music-controls">
+            <div class="control-buttons">
+                <button class="control-btn" id="prevBtn" aria-label="上一首">◀◀</button>
+                <button class="control-btn" id="playPauseBtn" aria-label="播放/暂停">▶</button>
+                <button class="control-btn" id="nextBtn" aria-label="下一首">▶▶</button>
+            </div>
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="music/0558_030c_545a_228b276b704ffdf2992ac0b49fb52bd3.m4a" type="audio/mpeg">
+            <source src="music/Distractions.m4a" type="audio/mpeg">
+            <source src="music/Kauan.m4a" type="audio/mpeg">
+            <source src="music/Sometimes.mp3" type="audio/mpeg">
+            <source src="music/Sudade.m4a" type="audio/mpeg">
+            <source src="music/The wind, The Sea.m4a" type="audio/mpeg">
+            <source src="music/This Place Is a Shelter.m4a" type="audio/mpeg">
+            <source src="music/克莱因之心.m4a" type="audio/mpeg">
+            <source src="music/燃.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <!-- 跳过导航链接 -->
     <a href="#main-content" class="skip-link">跳过导航</a>
     
@@ -119,7 +329,7 @@
                     <div class="resource-card">
                         <h3>完整规则书</h3>
                         <p>包含游戏所有机制和规则的详细说明</p>
-                        <a href="GUI.html">查看规则</a>
+                        <a href="GUI.html" class="btn" >查看规则</a>
                     </div>
                     <div class="resource-card">
                         <h3>23×23棋盘</h3>
@@ -139,16 +349,17 @@
     <!-- 页脚 -->
     <footer>
         <div class="container footer-content">
-            <p>© 2025 军势浩荡围棋：SHIYUN个人开发者 - 所有权利保留</p>
+            <p>© 2023 军势浩荡围棋 - 所有权利保留</p>
             <ul class="footer-links">
                 <li><a href="/forum">规则论坛</a></li>
                 <li><a href="/battlereports">战报分享</a></li>
-                <li><a href="/contact">联系我们：shiyun_78@qq.com</a></li>
+                <li><a href="/contact">联系我们</a></li>
             </ul>
         </div>
     </footer>
 
-    <script>
+   
+       <script>
         // 移动导航菜单功能
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -169,8 +380,113 @@
                     }
                 });
             });
+            
+            // 音乐播放器功能
+            const musicPlayer = document.getElementById('musicPlayer');
+            const bgMusic = document.getElementById('bgMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            
+            // 音乐列表（可以替换为您自己的音乐文件）
+            const musicList = [
+                'music/0558_030c_545a_228b276b704ffdf2992ac0b49fb52bd3.m4a',
+                'music/Distractions.m4a',
+                'music/Kauan.m4a',
+                'music/Sometimes.mp3',
+                'music/Sudade.m4a',
+                'music/The wind, The Sea.m4a',
+                'music/This Place Is a Shelter.m4a',
+                'music/克莱因之心.m4a',
+                'music/燃.mp3',
+            ];
+            
+            let currentMusicIndex = 0;
+            let isPlaying = false;
+            
+            // 设置初始音量
+            bgMusic.volume = volumeSlider.value;
+            
+            // 切换播放器展开/收起状态
+            musicPlayer.addEventListener('click', function(e) {
+                // 防止点击内部按钮时触发折叠
+                if (e.target === musicPlayer || e.target.classList.contains('music-icon')) {
+                    musicPlayer.classList.toggle('expanded');
+                }
+            });
+            
+            // 播放/暂停功能
+            playPauseBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                if (bgMusic.paused) {
+                    bgMusic.play().then(() => {
+                        isPlaying = true;
+                        musicPlayer.classList.add('playing');
+                        playPauseBtn.textContent = '❚❚';
+                    }).catch(err => {
+                        console.log('播放失败:', err);
+                    });
+                } else {
+                    bgMusic.pause();
+                    isPlaying = false;
+                    musicPlayer.classList.remove('playing');
+                    playPauseBtn.textContent = '▶';
+                }
+            });
+            
+            // 上一首功能
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                currentMusicIndex = (currentMusicIndex - 1 + musicList.length) % musicList.length;
+                loadMusic(currentMusicIndex);
+                if (isPlaying) {
+                    bgMusic.play();
+                }
+            });
+            
+            // 下一首功能
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
+                loadMusic(currentMusicIndex);
+                if (isPlaying) {
+                    bgMusic.play();
+                }
+            });
+            
+            // 音量控制
+            volumeSlider.addEventListener('input', function() {
+                bgMusic.volume = this.value;
+            });
+            
+            // 加载音乐函数
+            function loadMusic(index) {
+                bgMusic.src = musicList[index];
+                bgMusic.load();
+            }
+            
+            // 音乐结束时自动播放下一首
+            bgMusic.addEventListener('ended', function() {
+                currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
+                loadMusic(currentMusicIndex);
+                if (isPlaying) {
+                    bgMusic.play();
+                }
+            });
+            
+            // 检查用户是否已与页面交互过
+            let userInteracted = false;
+            
+            document.addEventListener('click', function() {
+                if (!userInteracted) {
+                    userInteracted = true;
+                    // 用户首次交互后允许音频播放
+                    bgMusic.volume = volumeSlider.value;
+                }
+            });
         });
     </script>
 </body>
-
 </html>
